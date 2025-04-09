@@ -2,55 +2,46 @@ package models;
 
 import models.names.Name;
 
-import java.lang.reflect.Array;
-import java.util.List;
-
 public class Pokemon {
-
     private Name name;
     private String type;
     private int healthPoints;
-    private Array attacks;
 
-    //Builder
-    public Pokemon(Name name, String type, int healthPoints, Array attacks){
+    // Constructor
+    public Pokemon(Name name, int healthPoints) {
         this.name = name;
-        this.type = type;
+        this.type = name.getType(); // Tipo obtenido directamente desde el enum
         this.healthPoints = healthPoints;
-        this.attacks = attacks;
     }
 
-
-    //Getters and Setters :D
+    // Getters
     public Name getName() {
         return name;
     }
 
-    public void setName(Name name) {
-        this.name = name;
-    }
-
     public String getType() {
-        return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+        return type;
     }
 
     public int getHealthPoints() {
-        return this.healthPoints;
+        return healthPoints;
     }
 
+    // Setters
     public void setHealthPoints(int healthPoints) {
         this.healthPoints = healthPoints;
     }
 
-    public Array getAttacks() {
-        return this.attacks;
+    // Recibir daño
+    public void receiveDamage(int damage) {
+        this.healthPoints -= damage;
+        if (this.healthPoints < 0) {
+            this.healthPoints = 0;
+        }
     }
 
-    public void setAttacks(Array attacks) {
-        this.attacks = attacks;
+    // Comprobar si sigue vivo
+    public boolean isAlive() {
+        return this.healthPoints > 0;
     }
 }
