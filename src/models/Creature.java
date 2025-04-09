@@ -28,4 +28,6 @@ public abstract class Creature {
     public boolean isAlive() {
         return this.healthPoints > 0;
     }
+
+
 }
