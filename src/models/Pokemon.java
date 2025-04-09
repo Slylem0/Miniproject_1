@@ -1,56 +1,44 @@
 package models;
 
 import models.names.Name;
-
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Pokemon {
-
+public class Pokemon extends Creature {
     private Name name;
-    private String type;
-    private int healthPoints;
-    private Array attacks;
+    private List<Attack> attacks;
 
-    //Builder
-    public Pokemon(Name name, String type, int healthPoints, Array attacks){
+    public Pokemon(Name name, int healthPoints) {
+        super(name.getType(), healthPoints);
         this.name = name;
-        this.type = type;
-        this.healthPoints = healthPoints;
-        this.attacks = attacks;
+        this.attacks = new ArrayList<>();
     }
 
-
-    //Getters and Setters :D
     public Name getName() {
         return name;
     }
 
-    public void setName(Name name) {
-        this.name = name;
+    public List<Attack> getAttacks() {
+        return attacks;
     }
 
-    public String getType() {
-        return this.type;
+    public boolean addAttack(Attack attack) {
+        if (attacks.size() < 4) {
+            attacks.add(attack);
+            return true;
+        }
+        return false;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public int getHealthPoints() {
-        return this.healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    public Array getAttacks() {
-        return this.attacks;
-    }
-
-    public void setAttacks(Array attacks) {
-        this.attacks = attacks;
+    //print the attacks
+    public void displayAttacks() {
+        if (attacks.isEmpty()) {
+            System.out.println(name + " has no attacks.");
+        } else {
+            System.out.println("Attacks of " + name + ":");
+            for (Attack attack : attacks) {
+                System.out.println("- " + attack);
+            }
+        }
     }
 }
