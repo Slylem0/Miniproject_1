@@ -1,47 +1,44 @@
 package models;
 
 import models.names.Name;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Pokemon {
+public class Pokemon extends Creature {
     private Name name;
-    private String type;
-    private int healthPoints;
+    private List<Attack> attacks;
 
-    // Constructor
     public Pokemon(Name name, int healthPoints) {
+        super(name.getType(), healthPoints);
         this.name = name;
-        this.type = name.getType(); // Tipo obtenido directamente desde el enum
-        this.healthPoints = healthPoints;
+        this.attacks = new ArrayList<>();
     }
 
-    // Getters
     public Name getName() {
         return name;
     }
 
-    public String getType() {
-        return type;
+    public List<Attack> getAttacks() {
+        return attacks;
     }
 
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    // Setters
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    // Recibir daño
-    public void receiveDamage(int damage) {
-        this.healthPoints -= damage;
-        if (this.healthPoints < 0) {
-            this.healthPoints = 0;
+    public boolean addAttack(Attack attack) {
+        if (attacks.size() < 4) {
+            attacks.add(attack);
+            return true;
         }
+        return false;
     }
 
-    // Comprobar si sigue vivo
-    public boolean isAlive() {
-        return this.healthPoints > 0;
+    //print the attacks
+    public void displayAttacks() {
+        if (attacks.isEmpty()) {
+            System.out.println(name + " has no attacks.");
+        } else {
+            System.out.println("Attacks of " + name + ":");
+            for (Attack attack : attacks) {
+                System.out.println("- " + attack);
+            }
+        }
     }
 }
