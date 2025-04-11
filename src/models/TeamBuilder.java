@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class TeamBuilder {
 
     public static void createTeam(Scanner scanner, Trainer trainer) {
@@ -106,3 +105,4 @@ public class TeamBuilder {
         return filtered.subList(0, Math.min(7, filtered.size()));
     }
 }
+
