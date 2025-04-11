@@ -30,6 +30,9 @@ public class Pokemon extends Creature {
         return false;
     }
 
+
+
+
     //print the attacks
     public void displayAttacks() {
         if (attacks.isEmpty()) {
