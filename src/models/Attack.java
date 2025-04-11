@@ -1,7 +1,7 @@
 package models;
 
 public class Attack {
-    //this is a enum created in the same file
+    //this is an enum created in the same file
     // (this is new for us, we investigated and see codes in github that implement this)
     public enum DamageType {
         PHYSICAL, SPECIAL
@@ -10,17 +10,23 @@ public class Attack {
     private String name;
     private DamageType damageType;
     private int power;
+    private String type;
 
     //builder
     public Attack(String name, String type, String damageType, int power) {
         this.name = name;
         this.damageType = DamageType.valueOf(damageType.toUpperCase());
         this.power = power;
+        this.type = type;
     }
 
     // Getters
     public String getName() {
         return name;
+    }
+
+    public String getType(){
+        return type;
     }
 
     public DamageType getDamageType() {
